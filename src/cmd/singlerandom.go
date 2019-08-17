@@ -2,7 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"os"
+
+	"github.com/agzuniverse/go-testcases/src/utils"
 
 	"github.com/agzuniverse/go-testcases/src/components"
 
@@ -15,8 +16,7 @@ var singleRandom = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		v, err := components.GenSingleRandom(min, max)
 		if err != nil {
-			fmt.Println(err)
-			os.Exit(0)
+			utils.HandleErr(err)
 		}
 		fmt.Println(v)
 	},
