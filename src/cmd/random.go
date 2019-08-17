@@ -8,8 +8,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var multiRandom = &cobra.Command{
-	Use:   "multirandom",
+var random = &cobra.Command{
+	Use:   "random",
 	Short: "Generate n positive random integers",
 	Run: func(cmd *cobra.Command, args []string) {
 		v, err := components.GenMultiRandom(n, min, max)
@@ -25,9 +25,9 @@ var max int
 var n int
 
 func init() {
-	multiRandom.Flags().IntVar(&n, "n", 0, "Number of random numbers to generate")
-	multiRandom.Flags().IntVar(&min, "min", 0, "Minimum value of random number")
-	multiRandom.Flags().IntVar(&max, "max", 0, "Maximum value of random number")
-	rootCmd.AddCommand(multiRandom)
+	random.Flags().IntVar(&n, "n", 0, "Number of random numbers to generate")
+	random.Flags().IntVar(&min, "min", 0, "Minimum value of random number")
+	random.Flags().IntVar(&max, "max", 0, "Maximum value of random number")
+	rootCmd.AddCommand(random)
 
 }
