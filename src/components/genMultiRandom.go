@@ -1,6 +1,8 @@
 package components
 
-import "errors"
+import (
+	"errors"
+)
 
 // GenMultiRandom generates n random numbers between min and max.
 func GenMultiRandom(n int, min int, max int) ([]int, error) {
