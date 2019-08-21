@@ -8,7 +8,7 @@ import (
 
 var random = &cobra.Command{
 	Use:   "random",
-	Short: "Generate n positive random integers",
+	Short: "Generate n random integers",
 	Run: func(cmd *cobra.Command, args []string) {
 		v, err := components.GenMultiRandom(n, min, max)
 		if err != nil {
