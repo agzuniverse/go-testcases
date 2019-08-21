@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/agzuniverse/go-testcases/src/components"
 	"github.com/agzuniverse/go-testcases/src/utils"
 	"github.com/spf13/cobra"
@@ -16,7 +14,7 @@ var random = &cobra.Command{
 		if err != nil {
 			utils.HandleErr(err)
 		}
-		fmt.Println(v)
+		utils.PprintArray(v)
 	},
 }
 
