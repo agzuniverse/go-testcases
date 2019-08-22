@@ -13,7 +13,6 @@ var exec = &cobra.Command{
 		if err := components.ExecFile(name, time); err != nil {
 			utils.HandleErr(err)
 		}
-
 	},
 }
 

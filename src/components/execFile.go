@@ -1,15 +1,17 @@
 package components
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os/exec"
+	"time"
 
 	"github.com/agzuniverse/go-testcases/src/utils"
 )
 
 // ExecFile executes the file passed to it.
-func ExecFile(name string, time int) error {
+func ExecFile(name string, t int) error {
 	proc := exec.Command(name)
 	stdin, err := proc.StdinPipe()
 	if err != nil {
@@ -20,13 +22,16 @@ func ExecFile(name string, time int) error {
 		utils.HandleErr(err2)
 	}
 	defer stdout.Close()
+	startTime := time.Now()
 	if err := proc.Start(); err != nil {
 		utils.HandleErr(err)
 	}
-	io.WriteString(stdin, "echo echo")
-	buf := make([]byte, 100)
-	stdout.Read(buf)
-	fmt.Println(buf)
+	reader := bufio.NewReader(stdout)
+	scanner := bufio.NewScanner(reader)
+	io.WriteString(stdin, "echoecho ")
+	scanner.Scan()
+	fmt.Println(scanner.Text())
 	proc.Wait()
+	fmt.Println(time.Since(startTime))
 	return nil
 }
