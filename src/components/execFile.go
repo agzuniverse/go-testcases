@@ -6,8 +6,6 @@ import (
 	"io"
 	"os/exec"
 	"time"
-
-	"github.com/agzuniverse/go-testcases/src/utils"
 )
 
 // ExecFile executes the file passed to it.
@@ -15,16 +13,15 @@ func ExecFile(name string, t int) error {
 	proc := exec.Command(name)
 	stdin, err := proc.StdinPipe()
 	if err != nil {
-		utils.HandleErr(err)
+		return err
 	}
 	stdout, err2 := proc.StdoutPipe()
 	if err != nil {
-		utils.HandleErr(err2)
+		return err2
 	}
-	defer stdout.Close()
 	startTime := time.Now()
-	if err := proc.Start(); err != nil {
-		utils.HandleErr(err)
+	if err3 := proc.Start(); err3 != nil {
+		return err3
 	}
 	reader := bufio.NewReader(stdout)
 	scanner := bufio.NewScanner(reader)
