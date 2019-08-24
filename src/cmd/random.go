@@ -10,7 +10,7 @@ var random = &cobra.Command{
 	Use:   "random",
 	Short: "Generate n random integers",
 	Run: func(cmd *cobra.Command, args []string) {
-		v, err := components.GenMultiRandom(n, min, max)
+		v, err := components.GenMultiRandom(np, minp, maxp)
 		if err != nil {
 			utils.HandleErr(err)
 		}
@@ -18,14 +18,14 @@ var random = &cobra.Command{
 	},
 }
 
-var min int
-var max int
-var n int
+var minp int
+var maxp int
+var np int
 
 func init() {
-	random.Flags().IntVar(&n, "n", 0, "Number of random numbers to generate")
-	random.Flags().IntVar(&min, "min", 0, "Minimum value of random number")
-	random.Flags().IntVar(&max, "max", 0, "Maximum value of random number")
+	random.Flags().IntVar(&np, "n", 0, "Number of random numbers to generate")
+	random.Flags().IntVar(&minp, "min", 0, "Minimum value of random number")
+	random.Flags().IntVar(&maxp, "max", 0, "Maximum value of random number")
 	rootCmd.AddCommand(random)
 
 }
